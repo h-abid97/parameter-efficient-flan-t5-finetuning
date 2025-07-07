@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment
+.env
+*.env
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets and models
+data/
+results/
+*.ckpt
+*.bin
+*.safetensors
+*.pt
+
+# Logs
+*.log
+runs/
