@@ -22,3 +22,16 @@ results/
 # Logs
 *.log
 runs/
+
+# Hugging Face cache
+~/.cache/huggingface/
+*.jsonl
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Checkpointing
+checkpoint/
