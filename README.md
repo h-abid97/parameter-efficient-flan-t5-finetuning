@@ -16,13 +16,15 @@ This project demonstrates how to apply **Parameter-Efficient Fine-Tuning (PEFT)*
 ### 1. Create and activate environment
 
 ```bash
-conda create -n peft-env python=3.9 -y
-conda activate peft-env
+conda create -n peft-flan-t5 python=3.9 -y
+conda activate peft-flan-t5
 ```
 
 ### 2. Install dependencies
 
 ```bash
+git clone https://github.com/h-abid97/parameter-efficient-flan-t5-finetuning.git
+cd parameter-efficient-flan-t5-finetuning
 pip install -r requirements.txt
 ```
 
