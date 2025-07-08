@@ -29,7 +29,15 @@ pip install -r requirements.txt
 ```
 
 ## 📊 Dataset
-The [SAMSum](https://huggingface.co/datasets/knkarthick/samsum) dataset contains dialogue-summary pairs and is used for training a summarization model.
+The [SAMSum](https://huggingface.co/datasets/knkarthick/samsum) dataset contains dialogue-summary pairs and is used for training a summarization model. It is collection of about 16k messenger-like conversations with summaries. Conversations were created and written down by linguists fluent in English.
+
+```
+{
+  "id": "13818513",
+  "summary": "Amanda baked cookies and will bring Jerry some tomorrow.",
+  "dialogue": "Amanda: I baked cookies. Do you want some?\r\nJerry: Sure!\r\nAmanda: I'll bring you tomorrow :-)"
+}
+```
 
 ## 🚀 How to Run
 ### 1. Preprocess and tokenize dataset
