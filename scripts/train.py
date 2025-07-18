@@ -1,22 +1,27 @@
 import os
 import argparse
 from datasets import load_from_disk
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, TaskType
 from transformers import (
     AutoTokenizer,
     AutoModelForSeq2SeqLM,
     Seq2SeqTrainer,
     Seq2SeqTrainingArguments,
     DataCollatorForSeq2Seq,
+    BitsAndBytesConfig, 
 )
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, TaskType
 
 def load_model_with_lora(model_id):
     """
     Load the base FLAN-T5 model in 8-bit and prepare it with LoRA.
     """
     print("Loading base model...")
+    quant_cfg = BitsAndBytesConfig(load_in_8bit=True)
     model = AutoModelForSeq2SeqLM.from_pretrained(
-        model_id, load_in_8bit=True, device_map="auto"
+        model_id,
+        quantization_config=quant_cfg,
+        device_map="auto",
+        torch_dtype="bfloat16",
     )
 
     # Prepare for LoRA training on k-bit (8-bit) weights
@@ -58,7 +63,8 @@ def main(model_id, data_dir, output_dir, epochs, lr):
         logging_steps=500,
         save_strategy="no",
         report_to="tensorboard",
-        fp16=True,
+        fp16=False,
+        bf16=True
     )
 
     trainer = Seq2SeqTrainer(
@@ -83,7 +89,7 @@ if __name__ == "__main__":
     parser.add_argument("--data_dir", type=str, default="data", help="Directory with preprocessed tokenized data")
     parser.add_argument("--output_dir", type=str, default="results/model", help="Where to save the fine-tuned model")
     parser.add_argument("--epochs", type=int, default=5, help="Number of training epochs")
-    parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate")
+    parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
     args = parser.parse_args()
 
     main(args.model_id, args.data_dir, args.output_dir, args.epochs, args.lr)
