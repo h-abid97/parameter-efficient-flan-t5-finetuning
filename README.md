@@ -56,7 +56,7 @@ python scripts/train.py \
   --data_dir data \
   --output_dir results/model \
   --epochs 5 \
-  --lr 1e-3
+  --lr 1e-4
 ```
 
 ### 3. Evaluate the model
