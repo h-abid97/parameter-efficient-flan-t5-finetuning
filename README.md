@@ -62,7 +62,7 @@ python scripts/train.py \
 ### 3. Evaluate the model
 
 ```bash
-python scripts/evaluate.py \
+python scripts/evaluate_model.py \
   --peft_model_dir results/model \
   --eval_data_dir data/eval
 ```
